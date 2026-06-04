@@ -4,11 +4,13 @@ import './index.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import reportWebVitals from './reportWebVitals';
 
-// 1. ייבוא של כל שלושת הדפים שלך ב-React
-// שינוי ה-import בתוך src/index.js בהתאם לשמות הקבצים האמיתיים שלך:
+// 1. ייבוא של הדפים הקיימים
 import WelcomePage from './myComponents/first_page';
-import SecondPage from './myComponents/second_page';   // אם הקובץ נקרא second_page.jsx
-import SignUpPage from './myComponents/sign_up_page'; // אם הקובץ נקרא sign_up_page.jsx
+import SecondPage from './myComponents/second_page';   
+import SignUpPage from './myComponents/sign_up_page'; 
+
+// 🆕 הוספה 1: ייבוא של דף הצ'אט המרכזי החדש שלך
+import EnterToChatting from './myComponents/enter_to_chatting'; 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -23,6 +25,9 @@ root.render(
         
         {/* הדף אליו מנווטים בלחיצה על Sign Up */}
         <Route path="/signup" element={<SignUpPage />} />
+
+        {/* 🆕 הוספה 2: הנתיב שמחבר את הכפתור מ-SecondPage לדף החדש */}
+        <Route path="/all-users" element={<EnterToChatting />} />
       </Routes>
     </Router>
   </React.StrictMode>
