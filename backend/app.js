@@ -1,26 +1,66 @@
-const express = require('express');
-const path = require('path');
-const params = require('./params');
-const users_R = require('./Routers/users_R');
+// const express = require('express');
+// const path = require('path');
+// const cors = require('cors'); // 1. ייבוא חבילת ה-cors שהתקנת
+// const params = require('./params');
+// const users_R = require('./Routers/users_R');
+// const chat_R = require('./Routers/chat_R');
 
+const express = require('express');
+console.log("➡️ 1. Express נטען בהצלחה");
+
+const path = require('path');
+const cors = require('cors');
+
+console.log("➡️ 2. מנסה לטעון את params...");
+const params = require('./params');
+console.log("➡️ 3. params נטען בהצלחה");
+
+console.log("➡️ 4. מנסה לטעון את הראוטר של המשתמשים...");
+const users_R = require('./Routers/users_R');
+console.log("➡️ 5. ראוטר משתמשים נטען בהצלחה");
+
+console.log("➡️ 6. מנסה לטעון את הראוטר של הצ'אט...");
 const chat_R = require('./Routers/chat_R');
+console.log("➡️ 7. ראוטר צ'אט נטען בהצלחה");
 
 const app = express();
 const PORT = params.PORT || 5698;
 
-app.use(express.json());
-app.use(express.static(__dirname)); 
+// 2. הגדרת CORS - חובה כדי ששרת ה-React יוכל לדבר עם השרת הזה
+app.use(cors({
+    origin: '*', // מאפשר לכל פורט (כולל ה-React שלך) לפנות לשרת
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    allowedHeaders: ['Content-Type', 'Authorization']
+}));
 
-// הפתרון: הפניה של הכתובת הראשית לקובץ שלך
-app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'first_page.html'));
-});
+app.use(express.json());
+
+// 3. מחיקה/שינוי: אין יותר צורך ב-app.use(express.static) או ב-app.get('/') שמגיש HTML,
+// מכיוון ששרת ה-React הוא זה שמציג ומנהל את הדפים עכשיו.
 
 app.use('/auth', users_R);
 app.use('/chat', chat_R);
 
+// 1. נשנה את ה-app.listen כדי שיבדוק כמה חיבורים פתוחים יש לו ברקע
 app.listen(PORT, () => {
     console.log(`Server running on http://localhost:${PORT}`);
+    
+    // בדיקה פנימית של Node.js - האם יש שרת פעיל ברקע?
+    const activeHandles = process._getActiveHandles().length;
+    console.log(`➡️ מספר חיבורים פעילים ב-Event Loop: ${activeHandles}`);
+});
+
+// 2. נתפוס את אירוע היציאה הרשמי של התוכנית ונראה מה קוד היציאה
+process.on('exit', (code) => {
+    console.log(`💥 השרת קיבל פקודת יציאה רשמית ונסגר עם קוד: ${code}`);
+});
+
+// השורות הקודמות ששמנו (משאירים אותן)
+process.on('uncaughtException', (err) => {
+    console.error('💥 הקריסה נתפסה! שגיאה חמורה בשרת:', err);
+});
+process.on('unhandledRejection', (reason, promise) => {
+    console.error('💥 הבטחה (Promise) נדחתה ולא טופלה:', reason);
 });
 
 //node index_login.js בטרמינל

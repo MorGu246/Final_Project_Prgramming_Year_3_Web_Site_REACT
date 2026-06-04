@@ -17,7 +17,7 @@ router.post('/signup', validateUser, async (req, res) => {
 });
 
 // נתיב התחברות: /auth/signin
-router.post('/signin', validateUser, async (req, res) => {
+router.post('/login', validateUser, async (req, res) => {
     const { user_name, password } = req.body;
     try {
         const query = 'SELECT * FROM users_db WHERE user_name = ? AND password = ?';

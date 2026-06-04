@@ -1,9 +1,13 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom'; // 1. ייבוא ה-Hook לניווט
 
 const WelcomePage = () => {
     // הגדרת State - המקום שבו React שומרת את מה שהמשתמש מקליד
     const [loginUser, setLoginUser] = useState('');
     const [loginPass, setLoginPass] = useState('');
+    
+    const navigate = useNavigate(); // 2. אתחול פונקציית הניווט
+
     // פונקציית ההתחברות (המרה של מה שהיה ב-index_login.js)
     const handleLogin = async () => {
         if (!loginUser || !loginPass) {
@@ -23,8 +27,9 @@ const WelcomePage = () => {
             if (response.ok) {
                 // שומרים ב-sessionStorage בדיוק כמו קודם
                 sessionStorage.setItem('currentUser', loginUser);
-                // מעבר לדף התפריט (ב-React נשתמש בד"כ ב-React Router, אבל כרגע נשאיר ככה)
-                window.location.href = './main_menu.html';
+                
+                // 3. שינוי: מעבר דף חלק ל-SecondPage (הנתיב שהגדרנו ב-App.jsx)
+                navigate('/welcome-back'); 
             } else {
                 alert(data.message || "שגיאה בהתחברות");
             }
@@ -33,6 +38,7 @@ const WelcomePage = () => {
             alert("קרתה שגיאה בחיבור לשרת");
         }
     };
+
     return (
         <div style={{ 
             backgroundColor: 'bisque', 
@@ -65,15 +71,21 @@ const WelcomePage = () => {
                 </div>
                 <div style={{ display: 'flex', gap: '10px', justifyContent: 'center' }}>
                     <button onClick={handleLogin}>sign in</button>
-                    <button onClick={() => window.location.href='./sign_up_page.html'}>
+                    
+                    {/* שינוי: ניווט דף ההרשמה באמצעות navigate */}
+                    <button onClick={() => navigate('/signup')}>
                         sign up
                     </button>
                 </div>
             </div>
             <br />
-            <a href="./info_test.html" style={{ color: 'blue', textDecoration: 'underline' }}>
+            {/* שינוי: החלפת ה-a tag לניווט של React כדי למנוע רענון מלא של הדפדפן */}
+            <span 
+                onClick={() => navigate('/info')} 
+                style={{ color: 'blue', textDecoration: 'underline', cursor: 'pointer' }}
+            >
                 to info (testing only)
-            </a>
+            </span>
         </div>
     );
 };
