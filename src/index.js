@@ -8,9 +8,8 @@ import reportWebVitals from './reportWebVitals';
 import WelcomePage from './myComponents/first_page';
 import SecondPage from './myComponents/second_page';   
 import SignUpPage from './myComponents/sign_up_page'; 
-
-// 🆕 הוספה 1: ייבוא של דף הצ'אט המרכזי החדש שלך
 import EnterToChatting from './myComponents/enter_to_chatting'; 
+import ChatPage from './myComponents/chat';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -19,15 +18,14 @@ root.render(
       <Routes>
         {/* דף הבית (לובי כניסה) */}
         <Route path="/" element={<WelcomePage />} />
-        
         {/* הדף אליו מנווטים אחרי התחברות מוצלחת */}
         <Route path="/welcome-back" element={<SecondPage />} />
-        
         {/* הדף אליו מנווטים בלחיצה על Sign Up */}
         <Route path="/signup" element={<SignUpPage />} />
-
         {/* 🆕 הוספה 2: הנתיב שמחבר את הכפתור מ-SecondPage לדף החדש */}
         <Route path="/all-users" element={<EnterToChatting />} />
+
+        <Route path="/chat" element={<ChatPage />} />
       </Routes>
     </Router>
   </React.StrictMode>

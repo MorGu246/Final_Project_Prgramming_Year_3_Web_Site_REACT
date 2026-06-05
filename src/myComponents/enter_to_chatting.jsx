@@ -127,6 +127,12 @@ const AllUsersPage = () => {
                     ))
                 )}
             </div>
+                        <button 
+                onClick={() => navigate('//welcome-back')} 
+                style={{ marginTop: '20px', background: 'none', border: 'none', color: '#007bff', cursor: 'pointer', textDecoration: 'underline' }}
+            >
+                חזרה לתפריט הראשי
+            </button>
         </div>
     );
 };
