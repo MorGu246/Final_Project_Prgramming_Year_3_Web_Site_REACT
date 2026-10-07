@@ -10,6 +10,7 @@ import SecondPage from './myComponents/second_page';
 import SignUpPage from './myComponents/sign_up_page'; 
 import EnterToChatting from './myComponents/enter_to_chatting'; 
 import ChatPage from './myComponents/chat';
+import ProfilePage from './myComponents/profile';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -26,6 +27,8 @@ root.render(
         <Route path="/all-users" element={<EnterToChatting />} />
 
         <Route path="/chat" element={<ChatPage />} />
+
+        <Route path="/profile" element={<ProfilePage />} />
       </Routes>
     </Router>
   </React.StrictMode>
