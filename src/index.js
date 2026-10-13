@@ -29,6 +29,8 @@ root.render(
         <Route path="/chat" element={<ChatPage />} />
 
         <Route path="/profile" element={<ProfilePage />} />
+
+        <Route path="/first-page" element={<WelcomePage />}/>
       </Routes>
     </Router>
   </React.StrictMode>

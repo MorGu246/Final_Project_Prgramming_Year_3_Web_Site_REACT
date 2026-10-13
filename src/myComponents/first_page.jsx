@@ -80,12 +80,12 @@ const WelcomePage = () => {
             </div>
             <br />
             {/* שינוי: החלפת ה-a tag לניווט של React כדי למנוע רענון מלא של הדפדפן */}
-            <span 
+            {/* <span 
                 onClick={() => navigate('/info')} 
                 style={{ color: 'blue', textDecoration: 'underline', cursor: 'pointer' }}
             >
                 to info (testing only)
-            </span>
+            </span> */}
         </div>
     );
 };

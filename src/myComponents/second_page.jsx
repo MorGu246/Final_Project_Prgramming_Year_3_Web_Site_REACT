@@ -37,6 +37,9 @@ const SecondPage = () => {
         // מעבר לדף רשימת המשתמשים
         navigate('/all-users'); // שנה את הנתיב לשם הראוט שהגדרת ב-App.js לטובת הדף הזה
     };
+    const goToFirstPage = () => {
+        navigate('/first-page');
+    }
 
     // אם המשתמש לא מחובר, נחזיר null כדי שלא תהיה קפיצה בעין של התפריט לפני ה-Redirect
     if (!currentUser) return null;
@@ -61,6 +64,12 @@ const SecondPage = () => {
             <button onClick={goToAllUsers} style={{ padding: '10px 20px', cursor: 'pointer' }}>
                 רשימת משתמשים (כדי להתכתב)
             </button>
+            <span 
+                onClick={goToFirstPage}
+                style={{ color: 'blue', textDecoration: 'underline', cursor: 'pointer' }}
+            >
+                התנתקות
+            </span>
         </div>
     );
 };
