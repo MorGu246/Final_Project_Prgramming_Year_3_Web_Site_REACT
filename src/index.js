@@ -5,12 +5,12 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import reportWebVitals from './reportWebVitals';
 
 // 1. ייבוא של הדפים הקיימים
-import WelcomePage from './myComponents/first_page';
-import SecondPage from './myComponents/second_page';   
-import SignUpPage from './myComponents/sign_up_page'; 
-import EnterToChatting from './myComponents/enter_to_chatting'; 
-import ChatPage from './myComponents/chat';
-import ProfilePage from './myComponents/profile';
+import WelcomePage from './my_Pages/first_page';
+import SecondPage from './my_Pages/second_page';   
+import SignUpPage from './my_Pages/sign_up_page'; 
+import EnterToChatting from './my_Pages/enter_to_chatting'; 
+import ChatPage from './my_Pages/chat';
+import ProfilePage from './my_Pages/profile';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
