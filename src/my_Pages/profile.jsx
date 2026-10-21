@@ -12,6 +12,10 @@ const ProfilePage = () => {
     const [userInfo, setUserInfo] = useState(null);
     const [loading, setLoading] = useState(true);
 
+    const goToPokemonInfo = () => {
+        navigate('/pokemon-info');
+    }
+
     useEffect(() => {
         // אבטחה: אם אין משתמש מחובר
         if (!currentUser) {
@@ -71,11 +75,17 @@ const ProfilePage = () => {
                         <p><strong>שם משתמש:</strong> {userInfo.user_name || profileUser}</p>
                         <p><strong>אימייל:</strong> {userInfo.email || 'לא עודכן'}</p>
                         {/* תוכל להוסיף כאן שדות נוספים מה-DB שלכם */}
+                            <button onClick={goToPokemonInfo} style={{ padding: '10px 20px', cursor: 'pointer' }}>
+                                למידע על הפוקימונים
+                            </button>
                     </div>
                 ) : (
                     <div>
                         <p><strong>שם משתמש:</strong> {profileUser}</p>
                         <p style={{ color: 'gray' }}>מחובר כעת במערכת</p>
+                            <button onClick={goToPokemonInfo} style={{ padding: '10px 20px', cursor: 'pointer' }}>
+                                למידע על הפוקימונים
+                            </button>
                     </div>
                 )}
             </div>

@@ -11,6 +11,7 @@ import SignUpPage from './my_Pages/sign_up_page';
 import EnterToChatting from './my_Pages/enter_to_chatting'; 
 import ChatPage from './my_Pages/chat';
 import ProfilePage from './my_Pages/profile';
+import PokemonInfo from './my_Pages/pokemonInfo';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -31,6 +32,8 @@ root.render(
         <Route path="/profile" element={<ProfilePage />} />
 
         <Route path="/first-page" element={<WelcomePage />}/>
+
+        <Route path="/pokemon-info" element={<PokemonInfo />}/>
       </Routes>
     </Router>
   </React.StrictMode>
